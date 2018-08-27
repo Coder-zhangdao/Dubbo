@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.school.user.dao.UserInfoDao" >
+  <resultMap id="BaseResultMap" type="com.school.user.model.UserInfo" >
+    <id column="u_id" property="u_id" jdbcType="VARCHAR" />
+    <result column="u_name" property="u_name" jdbcType="VARCHAR" />
+    <result column="u_password" property="u_password" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    u_id, u_name, u_password
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where u_id = #{u_id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_user
+    where u_id = #{u_id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.school.user.model.UserInfo" >
+    insert into t_user (u_id, u_name, u_password
+      )
+    values (#{u_id,jdbcType=VARCHAR}, #{u_name,jdbcType=VARCHAR}, #{u_password,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.school.user.model.UserInfo" >
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="u_id != null" >
+        u_id,
+      </if>
+      <if test="u_name != null" >
+        u_name,
+      </if>
+      <if test="u_password != null" >
+        u_password,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="u_id != null" >
+        #{u_id,jdbcType=VARCHAR},
+      </if>
+      <if test="u_name != null" >
+        #{u_name,jdbcType=VARCHAR},
+      </if>
+      <if test="u_password != null" >
+        #{u_password,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.school.user.model.UserInfo" >
+    update t_user
+    <set >
+      <if test="u_name != null" >
+        u_name = #{u_name,jdbcType=VARCHAR},
+      </if>
+      <if test="u_password != null" >
+        u_password = #{u_password,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where u_id = #{u_id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.school.user.model.UserInfo" >
+    update t_user
+    set u_name = #{u_name,jdbcType=VARCHAR},
+      u_password = #{u_password,jdbcType=VARCHAR}
+    where u_id = #{u_id,jdbcType=VARCHAR}
+  </update>
+</mapper>

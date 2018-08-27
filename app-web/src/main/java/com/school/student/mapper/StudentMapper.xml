@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.school.student.dao.StudentDao" >
+  <resultMap id="BaseResultMap" type="com.school.student.model.Student" >
+    <id column="studentId" property="studentId" jdbcType="VARCHAR" />
+    <result column="studentNo" property="studentNo" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="nation" property="nation" jdbcType="VARCHAR" />
+    <result column="entranceScore" property="entranceScore" jdbcType="INTEGER" />
+    <result column="entranceDate" property="entranceDate" jdbcType="DATE" />
+    <result column="nativeplace" property="nativeplace" jdbcType="VARCHAR" />
+    <result column="health" property="health" jdbcType="VARCHAR" />
+    <result column="polity" property="polity" jdbcType="VARCHAR" />
+    <result column="parent" property="parent" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="relation" property="relation" jdbcType="VARCHAR" />
+    <result column="workPlace" property="workPlace" jdbcType="VARCHAR" />
+    <result column="duty" property="duty" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="dormId" property="dormId" jdbcType="VARCHAR" />
+    <result column="gradeId" property="gradeId" jdbcType="VARCHAR" />
+    <result column="classId" property="classId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    studentId, studentNo, name, sex, birthday, nation, entranceScore, entranceDate, nativeplace, 
+    health, polity, parent, phone, relation, workPlace, duty, address, dormId, gradeId, 
+    classId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_student
+    where studentId = #{studentId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_student
+    where studentId = #{studentId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.school.student.model.Student" >
+    insert into t_student (studentId, studentNo, name, 
+      sex, birthday, nation, 
+      entranceScore, entranceDate, nativeplace, 
+      health, polity, parent, 
+      phone, relation, workPlace, 
+      duty, address, dormId, 
+      gradeId, classId)
+    values (#{studentId,jdbcType=VARCHAR}, #{studentNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{nation,jdbcType=VARCHAR}, 
+      #{entranceScore,jdbcType=INTEGER}, #{entranceDate,jdbcType=DATE}, #{nativeplace,jdbcType=VARCHAR}, 
+      #{health,jdbcType=VARCHAR}, #{polity,jdbcType=VARCHAR}, #{parent,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{relation,jdbcType=VARCHAR}, #{workPlace,jdbcType=VARCHAR}, 
+      #{duty,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{dormId,jdbcType=VARCHAR}, 
+      #{gradeId,jdbcType=VARCHAR}, #{classId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.school.student.model.Student" >
+    insert into t_student
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="studentId != null" >
+        studentId,
+      </if>
+      <if test="studentNo != null" >
+        studentNo,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="nation != null" >
+        nation,
+      </if>
+      <if test="entranceScore != null" >
+        entranceScore,
+      </if>
+      <if test="entranceDate != null" >
+        entranceDate,
+      </if>
+      <if test="nativeplace != null" >
+        nativeplace,
+      </if>
+      <if test="health != null" >
+        health,
+      </if>
+      <if test="polity != null" >
+        polity,
+      </if>
+      <if test="parent != null" >
+        parent,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="relation != null" >
+        relation,
+      </if>
+      <if test="workPlace != null" >
+        workPlace,
+      </if>
+      <if test="duty != null" >
+        duty,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="dormId != null" >
+        dormId,
+      </if>
+      <if test="gradeId != null" >
+        gradeId,
+      </if>
+      <if test="classId != null" >
+        classId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="studentId != null" >
+        #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentNo != null" >
+        #{studentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="nation != null" >
+        #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="entranceScore != null" >
+        #{entranceScore,jdbcType=INTEGER},
+      </if>
+      <if test="entranceDate != null" >
+        #{entranceDate,jdbcType=DATE},
+      </if>
+      <if test="nativeplace != null" >
+        #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="health != null" >
+        #{health,jdbcType=VARCHAR},
+      </if>
+      <if test="polity != null" >
+        #{polity,jdbcType=VARCHAR},
+      </if>
+      <if test="parent != null" >
+        #{parent,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="relation != null" >
+        #{relation,jdbcType=VARCHAR},
+      </if>
+      <if test="workPlace != null" >
+        #{workPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="duty != null" >
+        #{duty,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="dormId != null" >
+        #{dormId,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeId != null" >
+        #{gradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="classId != null" >
+        #{classId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.school.student.model.Student" >
+    update t_student
+    <set >
+      <if test="studentNo != null" >
+        studentNo = #{studentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="nation != null" >
+        nation = #{nation,jdbcType=VARCHAR},
+      </if>
+      <if test="entranceScore != null" >
+        entranceScore = #{entranceScore,jdbcType=INTEGER},
+      </if>
+      <if test="entranceDate != null" >
+        entranceDate = #{entranceDate,jdbcType=DATE},
+      </if>
+      <if test="nativeplace != null" >
+        nativeplace = #{nativeplace,jdbcType=VARCHAR},
+      </if>
+      <if test="health != null" >
+        health = #{health,jdbcType=VARCHAR},
+      </if>
+      <if test="polity != null" >
+        polity = #{polity,jdbcType=VARCHAR},
+      </if>
+      <if test="parent != null" >
+        parent = #{parent,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="relation != null" >
+        relation = #{relation,jdbcType=VARCHAR},
+      </if>
+      <if test="workPlace != null" >
+        workPlace = #{workPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="duty != null" >
+        duty = #{duty,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="dormId != null" >
+        dormId = #{dormId,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeId != null" >
+        gradeId = #{gradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="classId != null" >
+        classId = #{classId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where studentId = #{studentId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.school.student.model.Student" >
+    update t_student
+    set studentNo = #{studentNo,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      nation = #{nation,jdbcType=VARCHAR},
+      entranceScore = #{entranceScore,jdbcType=INTEGER},
+      entranceDate = #{entranceDate,jdbcType=DATE},
+      nativeplace = #{nativeplace,jdbcType=VARCHAR},
+      health = #{health,jdbcType=VARCHAR},
+      polity = #{polity,jdbcType=VARCHAR},
+      parent = #{parent,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      relation = #{relation,jdbcType=VARCHAR},
+      workPlace = #{workPlace,jdbcType=VARCHAR},
+      duty = #{duty,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      dormId = #{dormId,jdbcType=VARCHAR},
+      gradeId = #{gradeId,jdbcType=VARCHAR},
+      classId = #{classId,jdbcType=VARCHAR}
+    where studentId = #{studentId,jdbcType=VARCHAR}
+  </update>
+</mapper>
